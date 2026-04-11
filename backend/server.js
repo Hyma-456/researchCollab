@@ -1,0 +1,119 @@
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const db = require('./db');
+
+app.use(express.json());
+
+// ✅ Root test route
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
+
+// ✅ Projects
+app.get('/api/projects', (req, res) => {
+  db.query('SELECT * FROM projects', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching projects');
+      return;
+    }
+    console.log('Projects fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Users
+app.get('/api/users', (req, res) => {
+  db.query('SELECT * FROM users', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching users');
+      return;
+    }
+    console.log('Users fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Documents
+app.get('/api/documents', (req, res) => {
+  db.query('SELECT * FROM documents', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching documents');
+      return;
+    }
+    console.log('Documents fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Messages
+app.get('/api/messages', (req, res) => {
+  db.query('SELECT * FROM messages', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching messages');
+      return;
+    }
+    console.log('Messages fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Milestones
+app.get('/api/milestones', (req, res) => {
+  db.query('SELECT * FROM milestones', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching milestones');
+      return;
+    }
+    console.log('Milestones fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Project Members
+app.get('/api/project_members', (req, res) => {
+  db.query('SELECT * FROM project_members', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching project members');
+      return;
+    }
+    console.log('Project members fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Courses
+app.get('/api/courses', (req, res) => {
+  db.query('SELECT * FROM courses', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching courses');
+      return;
+    }
+    console.log('Courses fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Enrollments
+app.get('/api/enrollments', (req, res) => {
+  db.query('SELECT * FROM enrollments', (err, results) => {
+    if (err) {
+      console.error('SQL Error object:', err);
+      res.status(500).send('Error fetching enrollments');
+      return;
+    }
+    console.log('Enrollments fetched:', results);
+    res.json(results);
+  });
+});
+
+// ✅ Start server
+app.listen(5000, () => console.log('Backend running on port 5000'));
+
